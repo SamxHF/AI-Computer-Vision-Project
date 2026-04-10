@@ -1,0 +1,10 @@
+deepface
+opencv-python
+matplotlib
+pandas
+tqdm
+tensorflow
+tf-keras
+retina-face
+nbformat
+nbclient
