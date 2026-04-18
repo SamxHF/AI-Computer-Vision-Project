@@ -1,4 +1,5 @@
 deepface
+ipykernel
 opencv-python
 matplotlib
 pandas
