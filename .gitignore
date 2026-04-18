@@ -1,2 +1,7 @@
 open_data_set/
 .DS_Store
+
+# Python virtual environments
+.venv/
+venv/
+env/
