@@ -2,9 +2,13 @@ deepface
 opencv-python
 matplotlib
 pandas
+pillow
+scikit-learn
 tqdm
 tensorflow
 tf-keras
 retina-face
+torch
+torchvision
 nbformat
 nbclient
