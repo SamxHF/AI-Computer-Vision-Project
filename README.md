@@ -46,17 +46,17 @@ pip install faiss-cpu
 
 ## How to run
 
-1. Open **`people_identification_in_the_wild.ipynb`** (or the FAISS variant) in Jupyter, VS Code, or Cursor.
-2. Run cells **from top to bottom** the first time so variables (`gallery_matrix`, `gallery_ids`, `gallery_paths` in the FAISS book, `fixed_boxes`, etc.) exist before later sections.
-3. **Section 6.4** — fixed scene detector (MTCNN + NMS) and `fixed_boxes`.
-4. **Section 6.5** — per-face gallery matching, plots, saved “all faces with IDs” image.
+1. Open **`people_identification_in_the_wild.ipynb`**, the **Aggregate** notebook (`people_identification_in_the_wild_Aggreggate.ipynb`, **mean** cosine distance per identity, argmin + threshold), the **Voting** notebook (`people_identification_in_the_wild_voting.ipynb`, min vote floor then pick highest count — see `FUTURE_IDEAS.md`), the **Ranking** notebook (`people_identification_in_the_wild_Ranking.ipynb`, margin between top-two identities), or the FAISS variant in Jupyter, VS Code, or Cursor.
+2. Run cells **from top to bottom** the first time so variables (`gallery_matrix`, `gallery_ids`, `gallery_paths` in the FAISS book, `fixed_boxes`, etc.) exist before later sections. In the Aggregate/Voting/Ranking books, run **section 6.5.0** before 6.5 and section 8 so matching thresholds and helpers are defined.
+3. **Section 6.4** — fixed scene detector (**MTCNN**; raw boxes, no extra NMS) and `fixed_boxes`.
+4. **Section 6.5** — per-face gallery matching (voting or margin rule in the dedicated notebooks), plots, saved “all faces with IDs” image.
 5. **Section 8** — batch loop over scenes, precision/recall style metrics vs filename tokens, **CSV** export (`batch_evaluation_results.csv` / `faiss_batch_evaluation_results.csv`).
 
 Restart the kernel if you change model or gallery definitions mid-notebook.
 
 ## Pipeline (conceptual)
 
-1. **Detect** faces in the scene (MTCNN via DeepFace; NMS removes duplicate boxes).
+1. **Detect** faces in the scene (MTCNN via DeepFace; Aggregate/Voting/Ranking notebooks keep raw detector boxes without extra NMS).
 2. **Crop** each face region.
 3. **Embed** each crop with a recognition model (default **ArcFace** in DeepFace).
 4. **Match** each embedding to the **gallery** (nearest neighbor by cosine distance, or FAISS inner product on normalized vectors).
